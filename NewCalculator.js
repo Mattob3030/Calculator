@@ -1,133 +1,118 @@
-console.log("JS FILE EXECUTED");
-// ===== WAIT FOR MATERIALS (FIXES RACE CONDITION) =====
-function waitForMaterials(callback) {
-  if (typeof MATERIALS !== "undefined") {
-    callback();
-  } else {
-    setTimeout(() => waitForMaterials(callback), 100);
-  }
-}
+document.addEventListener("DOMContentLoaded", function () {
 
-// ===== MAIN INIT FUNCTION =====
-function initCalculator() {
-
-  const materialDropdown = document.getElementById("hn-material");
+  const list = document.querySelector(".hn-area-list");
   const addBtn = document.getElementById("hn-add");
+  const calcBtn = document.getElementById("hn-calc");
+  const printBtn = document.getElementById("hn-print");
+  const resultDiv = document.getElementById("hn-result");
+  const materialDropdown = document.getElementById("hn-material");
 
-  if (!materialDropdown || !addBtn) {
-    console.error("Required elements not found");
-    return;
-  }
-
-  // ===== POPULATE MATERIAL DROPDOWN =====
-  materialDropdown.innerHTML = '<option value="">Select Material</option>';
-
+  // BUILD MATERIAL DROPDOWN
   MATERIALS.forEach(mat => {
-    const option = document.createElement("option");
-    option.value = mat.id;
-    option.textContent = mat.name;
-    materialDropdown.appendChild(option);
+    const opt = document.createElement("option");
+    opt.value = mat.id;
+    opt.textContent = `${mat.name} ($${mat.price}/ton)`;
+    materialDropdown.appendChild(opt);
   });
 
-  // ===== MODE TOGGLE =====
-  const modeRadios = document.querySelectorAll('input[name="mode"]');
-  const multiSection = document.getElementById("hn-multi");
-  const totalSection = document.getElementById("hn-total");
-
-  modeRadios.forEach(radio => {
-    radio.addEventListener("change", () => {
-      const selected = document.querySelector('input[name="mode"]:checked').value;
-
-      if (selected === "multi") {
-        multiSection.style.display = "block";
-        totalSection.style.display = "none";
-        addBtn.style.display = "inline-block";
-      } else {
-        multiSection.style.display = "none";
-        totalSection.style.display = "block";
-        addBtn.style.display = "none";
-      }
-    });
-  });
-
-  // ===== ADD AREA ROW =====
-  const areaList = document.querySelector(".hn-area-list");
-
-  addBtn.addEventListener("click", () => {
+  // ADD AREA ROW
+  function addRow() {
     const row = document.createElement("div");
     row.className = "hn-area-row";
 
     row.innerHTML = `
-      <input type="number" class="hn-length" placeholder="Length">
-      <input type="number" class="hn-width" placeholder="Width">
-      <select class="hn-unit">
-        <option value="sqft">Sq Ft</option>
-        <option value="acres">Acres</option>
-      </select>
-      <button class="hn-remove">X</button>
+      <input type="number" placeholder="Length (ft)">
+      <input type="number" placeholder="Width (ft)">
+      <button type="button" class="hn-remove">X</button>
     `;
 
-    row.querySelector(".hn-remove").addEventListener("click", () => {
-      row.remove();
+    row.querySelector(".hn-remove").onclick = () => row.remove();
+    list.appendChild(row);
+  }
 
-      if (document.querySelectorAll(".hn-area-row").length === 0) {
-        addBtn.click();
-      }
+  addBtn.onclick = addRow;
+  addRow();
+
+  // TOGGLE MODE
+  document.querySelectorAll("input[name='mode']").forEach(r => {
+    r.addEventListener("change", () => {
+      document.getElementById("hn-multi").style.display =
+        r.value === "multi" ? "block" : "none";
+
+      document.getElementById("hn-total").style.display =
+        r.value === "total" ? "block" : "none";
     });
-
-    areaList.appendChild(row);
   });
 
-  // ===== CALCULATE =====
-  document.getElementById("hn-calc").addEventListener("click", function () {
+  // CALCULATE
+  calcBtn.onclick = function () {
 
-    let totalArea = 0;
-    const mode = document.querySelector('input[name="mode"]:checked').value;
+    let totalSqFt = 0;
+    const mode = document.querySelector("input[name='mode']:checked").value;
 
     if (mode === "multi") {
-      const rows = document.querySelectorAll(".hn-area-row");
-
-      rows.forEach(row => {
-        const length = parseFloat(row.querySelector(".hn-length").value) || 0;
-        const width = parseFloat(row.querySelector(".hn-width").value) || 0;
-        const unit = row.querySelector(".hn-unit").value;
-
-        let area = length * width;
-        if (unit === "acres") area *= 43560;
-
-        totalArea += area;
+      document.querySelectorAll(".hn-area-row").forEach(row => {
+        const [l, w] = row.querySelectorAll("input");
+        const len = parseFloat(l.value);
+        const wid = parseFloat(w.value);
+        if (len && wid) totalSqFt += len * wid;
       });
-
     } else {
-      let input = parseFloat(document.getElementById("hn-total-input").value) || 0;
-      let unit = document.getElementById("hn-unit").value;
+      let val = parseFloat(document.getElementById("hn-total-input").value);
+      const unit = document.getElementById("hn-unit").value;
 
-      if (unit === "acres") input *= 43560;
+      if (!val) {
+        resultDiv.innerHTML = "Enter total area.";
+        return;
+      }
 
-      totalArea = input;
+      totalSqFt = unit === "acres" ? val * 43560 : val;
     }
 
-    const depthInches = parseFloat(document.getElementById("hn-depth").value) || 0;
+    const depth = parseFloat(document.getElementById("hn-depth").value);
+    const matId = parseInt(materialDropdown.value);
+    const material = MATERIALS.find(m => m.id === matId);
 
-    if (totalArea <= 0 || depthInches <= 0) {
-      document.getElementById("hn-result").innerHTML = "Please enter valid area and depth.";
+    if (!totalSqFt || !depth || !material) {
+      resultDiv.innerHTML = "Please complete all fields.";
       return;
     }
 
-    const depthFeet = depthInches / 12;
-    const cubicFeet = totalArea * depthFeet;
-    const cubicYards = cubicFeet / 27;
+    // COVERAGE CALCULATION (based on your system)
+    const depthFactor = depth;
+    const adjustedCoverage = material.coverage / depthFactor;
 
-    document.getElementById("hn-result").innerHTML = `
-      <strong>Estimated Material:</strong><br><br>
-      <strong>Cubic Feet:</strong> ${cubicFeet.toFixed(2)}<br>
-      <strong>Cubic Yards:</strong> ${cubicYards.toFixed(2)}
+    const tonsNeeded = totalSqFt / adjustedCoverage;
+    const totalCost = tonsNeeded * material.price;
+
+    const output = `
+      <strong>Material Estimate</strong><br><br>
+      Area: ${totalSqFt.toFixed(0)} sq ft<br>
+      Material: ${material.name}<br>
+      Depth: ${depth}"<br>
+      Tons Needed: ${tonsNeeded.toFixed(2)} tons<br>
+      Estimated Cost: $${totalCost.toFixed(2)}
     `;
-  });
 
-  // ===== INIT FIRST ROW =====
-  addBtn.click();
-}
+    resultDiv.innerHTML = output;
 
-// ===== START AFTER MATERIALS IS READY =====
-waitForMaterials(initCalculator);
+    printBtn.style.display = "block";
+    printBtn.dataset.print = output;
+  };
+
+  // PRINT
+  printBtn.onclick = function () {
+    const w = window.open("", "_blank");
+    w.document.write(`
+      <html>
+        <head><title>Material Estimate</title></head>
+        <body style="font-family: Arial; padding:20px;">
+          ${this.dataset.print}
+        </body>
+      </html>
+    `);
+    w.document.close();
+    w.print();
+  };
+
+});
