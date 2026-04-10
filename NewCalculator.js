@@ -1,10 +1,14 @@
-function initCalculator() {
-
-  // ===== SAFETY CHECK =====
-  if (typeof MATERIALS === "undefined") {
-    console.error("MATERIALS not loaded");
-    return;
+// ===== WAIT FOR MATERIALS (FIXES RACE CONDITION) =====
+function waitForMaterials(callback) {
+  if (typeof MATERIALS !== "undefined") {
+    callback();
+  } else {
+    setTimeout(() => waitForMaterials(callback), 100);
   }
+}
+
+// ===== MAIN INIT FUNCTION =====
+function initCalculator() {
 
   const materialDropdown = document.getElementById("hn-material");
   const addBtn = document.getElementById("hn-add");
@@ -14,10 +18,9 @@ function initCalculator() {
     return;
   }
 
-  // Prevent duplicate initialization
-  if (materialDropdown.options.length > 1) return;
-
   // ===== POPULATE MATERIAL DROPDOWN =====
+  materialDropdown.innerHTML = '<option value="">Select Material</option>';
+
   MATERIALS.forEach(mat => {
     const option = document.createElement("option");
     option.value = mat.id;
@@ -125,6 +128,5 @@ function initCalculator() {
   addBtn.click();
 }
 
-// ===== RUN (Squarespace-safe) =====
-initCalculator();
-setTimeout(initCalculator, 500);
+// ===== START AFTER MATERIALS IS READY =====
+waitForMaterials(initCalculator);
