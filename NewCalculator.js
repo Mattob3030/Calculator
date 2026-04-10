@@ -129,10 +129,10 @@ function initCalculator() {
     const cubicFeet = totalArea * depthFeet;
     const cubicYards = cubicFeet / 27;
 
-    const TONS_PER_YARD = 1.5;
-    const tons = cubicYards * TONS_PER_YARD;
+    const pounds = cubicFeet * material.density;
+const tons = pounds / 2000;
 
-    const totalPrice = cubicYards * material.price;
+const totalPrice = tons * material.price;
 
     // ===== OUTPUT =====
     document.getElementById("hn-result").innerHTML = `
