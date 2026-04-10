@@ -2,6 +2,7 @@
 const modeRadios = document.querySelectorAll('input[name="mode"]');
 const multiSection = document.getElementById("hn-multi");
 const totalSection = document.getElementById("hn-total");
+const addBtn = document.getElementById("hn-add");
 
 modeRadios.forEach(radio => {
   radio.addEventListener("change", () => {
@@ -10,9 +11,11 @@ modeRadios.forEach(radio => {
     if (selected === "multi") {
       multiSection.style.display = "block";
       totalSection.style.display = "none";
+      addBtn.style.display = "inline-block";
     } else {
       multiSection.style.display = "none";
       totalSection.style.display = "block";
+      addBtn.style.display = "none";
     }
   });
 });
@@ -20,7 +23,6 @@ modeRadios.forEach(radio => {
 
 // ===== ADD AREA ROW =====
 const areaList = document.querySelector(".hn-area-list");
-const addBtn = document.getElementById("hn-add");
 
 addBtn.addEventListener("click", () => {
   const row = document.createElement("div");
@@ -36,9 +38,13 @@ addBtn.addEventListener("click", () => {
     <button class="hn-remove">X</button>
   `;
 
-  // Remove row
+  // Remove row (with safety check)
   row.querySelector(".hn-remove").addEventListener("click", () => {
     row.remove();
+
+    if (document.querySelectorAll(".hn-area-row").length === 0) {
+      addBtn.click(); // ensure at least one row always exists
+    }
   });
 
   areaList.appendChild(row);
@@ -80,6 +86,13 @@ document.getElementById("hn-calc").addEventListener("click", function () {
 
   // === DEPTH ===
   const depthInches = parseFloat(document.getElementById("hn-depth").value) || 0;
+
+  // === VALIDATION ===
+  if (totalArea <= 0 || depthInches <= 0) {
+    document.getElementById("hn-result").innerHTML = "Please enter valid area and depth.";
+    return;
+  }
+
   const depthFeet = depthInches / 12;
 
   // === VOLUME (BASE: cubic feet) ===
@@ -94,7 +107,6 @@ document.getElementById("hn-calc").addEventListener("click", function () {
     ${cubicYards.toFixed(2)} cubic yards<br>
     ${cubicMeters.toFixed(2)} cubic meters
   `;
-
 });
 
 
