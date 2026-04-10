@@ -1,3 +1,13 @@
+if (typeof MATERIALS === "undefined") {
+  console.error("MATERIALS not loaded");
+}
+document.addEventListener("DOMContentLoaded", function () {
+
+  if (typeof MATERIALS === "undefined") {
+    console.error("MATERIALS not loaded");
+    return;
+  }
+
 // ===== MODE TOGGLE =====
 const modeRadios = document.querySelectorAll('input[name="mode"]');
 const multiSection = document.getElementById("hn-multi");
