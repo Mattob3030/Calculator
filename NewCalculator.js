@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+function initCalculator() {
 
   // ===== SAFETY CHECK =====
   if (typeof MATERIALS === "undefined") {
@@ -6,9 +6,18 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  // ===== POPULATE MATERIAL DROPDOWN =====
   const materialDropdown = document.getElementById("hn-material");
+  const addBtn = document.getElementById("hn-add");
 
+  if (!materialDropdown || !addBtn) {
+    console.error("Required elements not found");
+    return;
+  }
+
+  // Prevent duplicate initialization
+  if (materialDropdown.options.length > 1) return;
+
+  // ===== POPULATE MATERIAL DROPDOWN =====
   MATERIALS.forEach(mat => {
     const option = document.createElement("option");
     option.value = mat.id;
@@ -20,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const modeRadios = document.querySelectorAll('input[name="mode"]');
   const multiSection = document.getElementById("hn-multi");
   const totalSection = document.getElementById("hn-total");
-  const addBtn = document.getElementById("hn-add");
 
   modeRadios.forEach(radio => {
     radio.addEventListener("change", () => {
@@ -55,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
       <button class="hn-remove">X</button>
     `;
 
-    // Remove row (with safety check)
     row.querySelector(".hn-remove").addEventListener("click", () => {
       row.remove();
 
@@ -73,7 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let totalArea = 0;
     const mode = document.querySelector('input[name="mode"]:checked').value;
 
-    // === MULTI AREA ===
     if (mode === "multi") {
       const rows = document.querySelectorAll(".hn-area-row");
 
@@ -83,14 +89,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const unit = row.querySelector(".hn-unit").value;
 
         let area = length * width;
-
         if (unit === "acres") area *= 43560;
 
         totalArea += area;
       });
 
     } else {
-      // === TOTAL AREA ===
       let input = parseFloat(document.getElementById("hn-total-input").value) || 0;
       let unit = document.getElementById("hn-unit").value;
 
@@ -99,22 +103,17 @@ document.addEventListener("DOMContentLoaded", function () {
       totalArea = input;
     }
 
-    // === DEPTH ===
     const depthInches = parseFloat(document.getElementById("hn-depth").value) || 0;
 
-    // === VALIDATION ===
     if (totalArea <= 0 || depthInches <= 0) {
       document.getElementById("hn-result").innerHTML = "Please enter valid area and depth.";
       return;
     }
 
     const depthFeet = depthInches / 12;
-
-    // === VOLUME ===
     const cubicFeet = totalArea * depthFeet;
     const cubicYards = cubicFeet / 27;
 
-    // === OUTPUT ===
     document.getElementById("hn-result").innerHTML = `
       <strong>Estimated Material:</strong><br><br>
       <strong>Cubic Feet:</strong> ${cubicFeet.toFixed(2)}<br>
@@ -122,7 +121,10 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
   });
 
-  // ===== INIT =====
+  // ===== INIT FIRST ROW =====
   addBtn.click();
+}
 
-});
+// ===== RUN (Squarespace-safe) =====
+initCalculator();
+setTimeout(initCalculator, 500);
