@@ -102,11 +102,11 @@ document.getElementById("hn-calc").addEventListener("click", function () {
 
   // === OUTPUT ===
   document.getElementById("hn-result").innerHTML = `
-    <strong>Estimated Material:</strong><br><br>
-    ${cubicFeet.toFixed(2)} cubic feet<br>
-    ${cubicYards.toFixed(2)} cubic yards<br>
-    ${cubicMeters.toFixed(2)} cubic meters
-  `;
+  <strong>Estimated Material:</strong><br><br>
+  
+  <strong>Cubic Feet:</strong> ${cubicFeet.toFixed(2)}<br>
+  <strong>Cubic Yards:</strong> ${cubicYards.toFixed(2)}
+`;
 });
 
 
