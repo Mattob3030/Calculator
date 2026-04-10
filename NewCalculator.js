@@ -101,10 +101,8 @@ document.getElementById("hn-calc").addEventListener("click", function () {
   const cubicMeters = cubicFeet * 0.0283168;
 
   // === OUTPUT ===
-  document.getElementById("hn-result").innerHTML = `
-  <strong>Estimated Material:</strong><br><br>
-  <strong>Cubic Feet:</strong> ${cubicFeet.toFixed(2)}<br>
-  <strong>Cubic Yards:</strong> ${cubicYards.toFixed(2)}
+ document.getElementById("hn-result").innerHTML = `
+  <strong>TEST OUTPUT</strong>
 `;
 });
 
