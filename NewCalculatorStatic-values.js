@@ -1,10 +1,10 @@
 window.MATERIALS = [
 
-  { id: 1, name: "1.5” Multi-Color River Rock", price: 75, coverage: 250 },
-  { id: 2, name: "3/4” Multi-Color River Rock", price: 60, coverage: 250 },
-  { id: 3, name: "3/8” Washed Pea Gravel", price: 35, coverage: 250 },
+  { id: 1, name: "1.5" Multi-Color River Rock", price: 75, coverage: 250 },
+  { id: 2, name: "3/4" Multi-Color River Rock", price: 60, coverage: 250 },
+  { id: 3, name: "3/8" Washed Pea Gravel", price: 35, coverage: 250 },
   { id: 4, name: "White Rock CM11 (5/8”–1”)", price: 60, coverage: 250 },
-  { id: 5, name: "1.5” White Rock (CA-5)", price: 65, coverage: 250 },
+  { id: 5, name: "1.5" White Rock (CA-5)", price: 65, coverage: 250 },
   { id: 6, name: "Brown CA-5", price: 50, coverage: 250 },
   { id: 7, name: "3/8” Chipped White Rock", price: 57, coverage: 250 },
 
