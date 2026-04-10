@@ -1,4 +1,4 @@
-const MATERIALS = [
+window.MATERIALS = [
 
   { id: 1, name: "1.5” Multi-Color River Rock", price: 75, coverage: 250 },
   { id: 2, name: "3/4” Multi-Color River Rock", price: 60, coverage: 250 },
