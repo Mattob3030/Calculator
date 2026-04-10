@@ -1,3 +1,4 @@
+console.log("JS FILE EXECUTED");
 // ===== WAIT FOR MATERIALS (FIXES RACE CONDITION) =====
 function waitForMaterials(callback) {
   if (typeof MATERIALS !== "undefined") {
