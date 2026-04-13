@@ -217,21 +217,32 @@ widthInput.addEventListener("input", updateRowResult);
 const materialName = material.name;
 
 document.getElementById("hn-result").innerHTML = `
-  <strong>==============================================</strong><br>
-  <strong>Hoerr Nursery's StoneMarket Estimate ${formattedDate}</strong><br>
-  <strong>==============================================</strong><br><br>
-  <strong>Results:</strong><br><br>
-  <strong>Material:</strong> ${materialName}<br>
-  <strong>Area:</strong> ${totalArea.toFixed(2)} sq ft<br>
-  <strong>Cubic Feet:</strong> ${cubicFeet.toFixed(2)}<br>
-  <strong>Cubic Yards:</strong> ${cubicYards.toFixed(2)}<br><br>
-  <strong>Tons (est.):</strong> ${tons.toFixed(2)}<br>
-  <strong>Estimated Cost:</strong> $${totalPrice.toFixed(2)}<br><br>
-  <strong>==============================================</strong><br>
-  <strong>Call us today to order: 309-689-2513</strong><br>
-  <strong>Located 8020 N. Shade Tree Dr. Peoria, IL 61615</strong><br>
-  <strong>HoerrNursery.com</strong><br>
-  <strong>==============================================</strong>
+  <div style="margin-bottom:10px;">
+    <strong>Hoerr Nursery's StoneMarket Estimate ${formattedDate}</strong>
+  </div>
+
+  <div style="margin-bottom:10px;">
+    <strong>Results:</strong>
+  </div>
+
+  <div><strong>Material:</strong> ${materialName}</div>
+  <div><strong>Area:</strong> ${totalArea.toFixed(2)} sq ft</div>
+  <div><strong>Cubic Feet:</strong> ${cubicFeet.toFixed(2)}</div>
+  <div><strong>Cubic Yards:</strong> ${cubicYards.toFixed(2)}</div>
+
+  <div style="margin-top:10px;">
+    <strong>Tons (est.):</strong> ${tons.toFixed(2)}
+  </div>
+
+  <div style="margin-top:6px;">
+    <strong>Estimated Cost:</strong> $${totalPrice.toFixed(2)}
+  </div>
+
+  <div style="margin-top:15px;">
+    <strong>Call us today to order: 309-689-2513</strong><br>
+    <strong>Located 8020 N. Shade Tree Dr. Peoria, IL 61615</strong><br>
+    <strong>HoerrNursery.com</strong>
+  </div>
 `;
   });
 
