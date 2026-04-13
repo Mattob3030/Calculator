@@ -139,12 +139,7 @@ function initCalculator() {
 
   // ===== CALCULATE =====
   document.getElementById("hn-calc").addEventListener("click", function () {
-const today = new Date();
-const formattedDate = today.toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "numeric"
-}
+
     let totalArea = 0;
     const mode = document.querySelector('input[name="mode"]:checked').value;
 
@@ -191,11 +186,16 @@ const formattedDate = today.toLocaleDateString("en-US", {
     const depthFeet = depthInches / 12;
     const cubicFeet = totalArea * depthFeet;
     const cubicYards = cubicFeet / 27;
-
     const pounds = cubicFeet * material.density;
     const tons = pounds / 2000;
     const totalPrice = tons * material.price;
-
+    // ===== DATE =====
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+});
     // ===== OUTPUT =====
     document.getElementById("hn-result").innerHTML = `
       <strong>Hoerr Nursery's StoneMarket Estimate ${formattedDate}</strong><br><br>
