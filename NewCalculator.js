@@ -139,7 +139,12 @@ function initCalculator() {
 
   // ===== CALCULATE =====
   document.getElementById("hn-calc").addEventListener("click", function () {
-
+const today = new Date();
+const formattedDate = today.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+}
     let totalArea = 0;
     const mode = document.querySelector('input[name="mode"]:checked').value;
 
@@ -192,9 +197,8 @@ function initCalculator() {
     const totalPrice = tons * material.price;
 
     // ===== OUTPUT =====
-    const today = new Date();
     document.getElementById("hn-result").innerHTML = `
-      <strong>Hoerr Nursery's StoneMarket Estimate ${today}</strong><br><br>
+      <strong>Hoerr Nursery's StoneMarket Estimate ${formattedDate}</strong><br><br>
       <strong>Results:</strong><br><br>
       <strong>Area:</strong> ${totalArea.toFixed(2)} sq ft<br>
       <strong>Cubic Feet:</strong> ${cubicFeet.toFixed(2)}<br>
