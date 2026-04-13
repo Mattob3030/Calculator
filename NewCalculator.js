@@ -200,7 +200,8 @@ function initCalculator() {
       <strong>Cubic Feet:</strong> ${cubicFeet.toFixed(2)}<br>
       <strong>Cubic Yards:</strong> ${cubicYards.toFixed(2)}<br><br>
       <strong>Tons (est.):</strong> ${tons.toFixed(2)}<br>
-      <strong>Estimated Cost:</strong> $${totalPrice.toFixed(2)}
+      <strong>Estimated Cost:</strong> $${totalPrice.toFixed(2)}<br><br>
+      <strong>Call us today to order: 309-689-2513 • Located 8020 N. Shade Tree Dr. Peoria, IL 61615</strong>
     `;
   });
 
