@@ -192,7 +192,9 @@ function initCalculator() {
     const totalPrice = tons * material.price;
 
     // ===== OUTPUT =====
+    const today = new Date();
     document.getElementById("hn-result").innerHTML = `
+      <strong>Hoerr Nursery's StoneMarket Estimate ${today}</strong><br><br>
       <strong>Results:</strong><br><br>
       <strong>Area:</strong> ${totalArea.toFixed(2)} sq ft<br>
       <strong>Cubic Feet:</strong> ${cubicFeet.toFixed(2)}<br>
