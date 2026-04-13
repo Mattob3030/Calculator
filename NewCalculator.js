@@ -113,15 +113,15 @@ function initCalculator() {
     row.className = "hn-area-row";
 
     row.innerHTML = `
-      <input type="number" class="hn-length" placeholder="Length">
-      <input type="number" class="hn-width" placeholder="Width">
-      <select class="hn-unit">
-        <option value="sqft">Sq Ft</option>
-        <option value="acres">Acres</option>
-      </select>
-      <button class="hn-remove">X</button>
-    `;
-
+  <input type="number" class="hn-length" placeholder="Length">
+  <input type="number" class="hn-width" placeholder="Width">
+  <select class="hn-unit">
+    <option value="sqft">Sq Ft</option>
+    <option value="acres">Acres</option>
+  </select>
+  <span class="hn-row-result"></span>
+  <button class="hn-remove">X</button>
+`;
     row.querySelector(".hn-remove").addEventListener("click", () => {
       row.remove();
 
@@ -129,7 +129,24 @@ function initCalculator() {
         addBtn.click();
       }
     });
+const lengthInput = row.querySelector(".hn-length");
+const widthInput = row.querySelector(".hn-width");
+const resultDisplay = row.querySelector(".hn-row-result");
 
+function updateRowResult() {
+  const length = parseFloat(lengthInput.value) || 0;
+  const width = parseFloat(widthInput.value) || 0;
+
+  if (length > 0 && width > 0) {
+    const area = length * width;
+    resultDisplay.textContent = `${area.toFixed(2)} sq ft`;
+  } else {
+    resultDisplay.textContent = "";
+  }
+}
+
+lengthInput.addEventListener("input", updateRowResult);
+widthInput.addEventListener("input", updateRowResult);
     areaList.appendChild(row);
 
     // 🔧 APPLY CURRENT MODE TO NEW ROW
@@ -198,14 +215,18 @@ function initCalculator() {
 });
     // ===== OUTPUT =====
     document.getElementById("hn-result").innerHTML = `
-      <strong>Hoerr Nursery's StoneMarket Estimate ${formattedDate}</strong><br><br>
+      <strong>=====================================================</strong><br>
+      <strong>Hoerr Nursery's StoneMarket Estimate ${formattedDate}</strong><br>
+      <strong>=====================================================</strong><br><br>
       <strong>Results:</strong><br><br>
       <strong>Area:</strong> ${totalArea.toFixed(2)} sq ft<br>
       <strong>Cubic Feet:</strong> ${cubicFeet.toFixed(2)}<br>
       <strong>Cubic Yards:</strong> ${cubicYards.toFixed(2)}<br><br>
       <strong>Tons (est.):</strong> ${tons.toFixed(2)}<br>
       <strong>Estimated Cost:</strong> $${totalPrice.toFixed(2)}<br><br>
-      <strong>Call us today to order: 309-689-2513 • Located 8020 N. Shade Tree Dr. Peoria, IL 61615</strong>
+      <strong>=====================================================</strong><br>
+      <strong>Call us today to order: 309-689-2513 • Located 8020 N. Shade Tree Dr. Peoria, IL 61615</strong><br>
+      <strong>=====================================================</strong>
     `;
   });
 
