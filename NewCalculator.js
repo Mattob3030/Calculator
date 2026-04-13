@@ -194,7 +194,7 @@ function initCalculator() {
       </div>
 
       <div><strong>Material:</strong> ${material.name}</div>
-      <div><strong>Area:</strong> ${totalArea.toFixed(2)} sq ft</div>
+      ${mode !== "yards" ? `<div><strong>Area:</strong> ${totalArea.toFixed(2)} sq ft</div>` : ""}
       <div><strong>Cubic Feet:</strong> ${cubicFeet.toFixed(2)}</div>
       <div><strong>Cubic Yards:</strong> ${cubicYards.toFixed(2)}</div>
 
