@@ -35,7 +35,7 @@ function initCalculator() {
   const multiSection = document.getElementById("hn-multi");
   const totalSection = document.getElementById("hn-total");
 
-  // 🔧 NEW: control unit availability
+  // 🔧 CONTROL UNIT + LABEL BEHAVIOR
   function updateUnitsForMode(mode) {
     const rows = document.querySelectorAll(".hn-area-row");
 
@@ -44,19 +44,34 @@ function initCalculator() {
       if (!select) return;
 
       let acresOption = select.querySelector('option[value="acres"]');
+      let label = row.querySelector(".hn-unit-label");
 
       if (mode === "multi") {
-        // Remove acres completely
-        if (acresOption) {
-          acresOption.remove();
-        }
+        // Remove acres
+        if (acresOption) acresOption.remove();
 
-        // Safety fallback
-        if (select.value === "acres") {
-          select.value = "sqft";
+        // Force sqft
+        select.value = "sqft";
+
+        // Hide dropdown
+        select.style.display = "none";
+
+        // Add label if missing
+        if (!label) {
+          const span = document.createElement("span");
+          span.className = "hn-unit-label";
+          span.textContent = "Sq Ft";
+          span.style.fontWeight = "600";
+          span.style.minWidth = "60px";
+          span.style.textAlign = "center";
+
+          select.parentNode.insertBefore(span, select.nextSibling);
         }
 
       } else {
+        // Show dropdown
+        select.style.display = "";
+
         // Restore acres if missing
         if (!acresOption) {
           const option = document.createElement("option");
@@ -64,6 +79,9 @@ function initCalculator() {
           option.textContent = "Acres";
           select.appendChild(option);
         }
+
+        // Remove label
+        if (label) label.remove();
       }
     });
   }
@@ -114,7 +132,7 @@ function initCalculator() {
 
     areaList.appendChild(row);
 
-    // 🔧 APPLY CURRENT MODE RULE TO NEW ROW
+    // 🔧 APPLY CURRENT MODE TO NEW ROW
     const currentMode = document.querySelector('input[name="mode"]:checked').value;
     updateUnitsForMode(currentMode);
   });
