@@ -15,7 +15,10 @@ function initCalculator() {
   const materialDropdown = document.getElementById("hn-material");
   const addBtn = document.getElementById("hn-add");
 
-  if (!materialDropdown || !addBtn) return;
+  if (!materialDropdown || !addBtn) {
+    console.error("Required elements not found");
+    return;
+  }
 
   // ===== POPULATE MATERIALS =====
   materialDropdown.innerHTML = '<option value="">Select Material</option>';
@@ -58,7 +61,7 @@ function initCalculator() {
         totalSection.style.display = "none";
         yardsSection.style.display = "block";
         addBtn.style.display = "none";
-        depthGroup.style.display = "none"; // 🔥 hide depth
+        depthGroup.style.display = "none";
       }
     });
   });
@@ -81,32 +84,37 @@ function initCalculator() {
       <button class="hn-remove">X</button>
     `;
 
-    row.querySelector(".hn-remove").onclick = () => {
+    row.querySelector(".hn-remove").addEventListener("click", () => {
       row.remove();
       if (document.querySelectorAll(".hn-area-row").length === 0) {
         addBtn.click();
       }
-    };
+    });
 
-    // live sqft calc
     const lengthInput = row.querySelector(".hn-length");
     const widthInput = row.querySelector(".hn-width");
     const resultDisplay = row.querySelector(".hn-row-result");
 
-    function updateRow() {
-      const l = parseFloat(lengthInput.value) || 0;
-      const w = parseFloat(widthInput.value) || 0;
-      resultDisplay.textContent = (l && w) ? `${(l*w).toFixed(2)} sq ft` : "";
+    function updateRowResult() {
+      const length = parseFloat(lengthInput.value) || 0;
+      const width = parseFloat(widthInput.value) || 0;
+
+      if (length > 0 && width > 0) {
+        const area = length * width;
+        resultDisplay.textContent = `${area.toFixed(2)} sq ft`;
+      } else {
+        resultDisplay.textContent = "";
+      }
     }
 
-    lengthInput.addEventListener("input", updateRow);
-    widthInput.addEventListener("input", updateRow);
+    lengthInput.addEventListener("input", updateRowResult);
+    widthInput.addEventListener("input", updateRowResult);
 
     areaList.appendChild(row);
   });
 
   // ===== CALCULATE =====
-  document.getElementById("hn-calc").onclick = function () {
+  document.getElementById("hn-calc").addEventListener("click", function () {
 
     const mode = document.querySelector('input[name="mode"]:checked').value;
 
@@ -128,12 +136,14 @@ function initCalculator() {
     } else {
 
       if (mode === "multi") {
-        document.querySelectorAll(".hn-area-row").forEach(row => {
-          let l = parseFloat(row.querySelector(".hn-length").value) || 0;
-          let w = parseFloat(row.querySelector(".hn-width").value) || 0;
-          let unit = row.querySelector(".hn-unit").value;
+        const rows = document.querySelectorAll(".hn-area-row");
 
-          let area = l * w;
+        rows.forEach(row => {
+          const length = parseFloat(row.querySelector(".hn-length").value) || 0;
+          const width = parseFloat(row.querySelector(".hn-width").value) || 0;
+          const unit = row.querySelector(".hn-unit").value;
+
+          let area = length * width;
           if (unit === "acres") area *= 43560;
 
           totalArea += area;
@@ -175,20 +185,72 @@ function initCalculator() {
 
     // ===== OUTPUT =====
     document.getElementById("hn-result").innerHTML = `
-      <strong>Hoerr Nursery's StoneMarket Estimate ${formattedDate}</strong><br><br>
-      <strong>Material:</strong> ${material.name}<br>
-      <strong>Cubic Yards:</strong> ${cubicYards.toFixed(2)}<br>
-      <strong>Tons:</strong> ${tons.toFixed(2)}<br><br>
-      <strong>Estimated Cost:</strong> $${totalPrice.toFixed(2)}
+      <div style="margin-bottom:10px;">
+        <strong>Hoerr Nursery's StoneMarket Estimate ${formattedDate}</strong>
+      </div>
+
+      <div style="margin-bottom:10px;">
+        <strong>Results:</strong>
+      </div>
+
+      <div><strong>Material:</strong> ${material.name}</div>
+      <div><strong>Area:</strong> ${totalArea.toFixed(2)} sq ft</div>
+      <div><strong>Cubic Feet:</strong> ${cubicFeet.toFixed(2)}</div>
+      <div><strong>Cubic Yards:</strong> ${cubicYards.toFixed(2)}</div>
+
+      <div style="margin-top:10px;">
+        <strong>Tons (est.):</strong> ${tons.toFixed(2)}
+      </div>
+
+      <div style="margin-top:6px;">
+        <strong>Estimated Cost:</strong> $${totalPrice.toFixed(2)}
+      </div>
+
+      <div style="margin-top:15px;">
+        <strong>Call us today to order: 309-689-2513</strong><br>
+        <strong>Located 8020 N. Shade Tree Dr. Peoria, IL 61615</strong><br>
+        <strong>HoerrNursery.com</strong>
+      </div>
     `;
-  };
+  });
 
+  // ===== PRINT BUTTON =====
+  const printBtn = document.getElementById("hn-print");
+
+  if (printBtn) {
+    printBtn.onclick = function () {
+      const w = window.open("", "_blank");
+      const resultHTML = document.getElementById("hn-result").innerHTML;
+
+      w.document.write(`
+        <html>
+          <head>
+            <title>Material Estimate</title>
+            <style>
+              body { font-family: Arial; padding:40px; color:#222; }
+              .container { max-width:700px; margin:auto; }
+              h1 { text-align:center; margin-bottom:20px; }
+              .footer { margin-top:30px; font-size:13px; text-align:center; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              ${resultHTML}
+              <div class="footer">
+                Hoerr Nursery • 309-689-2513
+              </div>
+            </div>
+          </body>
+        </html>
+      `);
+
+      w.document.close();
+      w.print();
+    };
+  }
+
+  // ===== INIT =====
   addBtn.click();
-}
-
-  // 🔧 ENSURE CORRECT MODE ON LOAD
-  const initialMode = document.querySelector('input[name="mode"]:checked').value;
-  updateUnitsForMode(initialMode);
 }
 
 // ===== START =====
