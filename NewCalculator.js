@@ -35,6 +35,39 @@ function initCalculator() {
   const multiSection = document.getElementById("hn-multi");
   const totalSection = document.getElementById("hn-total");
 
+  // 🔧 NEW: control unit availability
+  function updateUnitsForMode(mode) {
+    const rows = document.querySelectorAll(".hn-area-row");
+
+    rows.forEach(row => {
+      const select = row.querySelector(".hn-unit");
+      if (!select) return;
+
+      let acresOption = select.querySelector('option[value="acres"]');
+
+      if (mode === "multi") {
+        // Remove acres completely
+        if (acresOption) {
+          acresOption.remove();
+        }
+
+        // Safety fallback
+        if (select.value === "acres") {
+          select.value = "sqft";
+        }
+
+      } else {
+        // Restore acres if missing
+        if (!acresOption) {
+          const option = document.createElement("option");
+          option.value = "acres";
+          option.textContent = "Acres";
+          select.appendChild(option);
+        }
+      }
+    });
+  }
+
   modeRadios.forEach(radio => {
     radio.addEventListener("change", () => {
       const selected = document.querySelector('input[name="mode"]:checked').value;
@@ -48,6 +81,9 @@ function initCalculator() {
         totalSection.style.display = "block";
         addBtn.style.display = "none";
       }
+
+      // 🔧 APPLY UNIT RULES
+      updateUnitsForMode(selected);
     });
   });
 
@@ -77,6 +113,10 @@ function initCalculator() {
     });
 
     areaList.appendChild(row);
+
+    // 🔧 APPLY CURRENT MODE RULE TO NEW ROW
+    const currentMode = document.querySelector('input[name="mode"]:checked').value;
+    updateUnitsForMode(currentMode);
   });
 
   // ===== CALCULATE =====
@@ -130,9 +170,8 @@ function initCalculator() {
     const cubicYards = cubicFeet / 27;
 
     const pounds = cubicFeet * material.density;
-const tons = pounds / 2000;
-
-const totalPrice = tons * material.price;
+    const tons = pounds / 2000;
+    const totalPrice = tons * material.price;
 
     // ===== OUTPUT =====
     document.getElementById("hn-result").innerHTML = `
@@ -169,6 +208,10 @@ const totalPrice = tons * material.price;
 
   // ===== INIT FIRST ROW =====
   addBtn.click();
+
+  // 🔧 ENSURE CORRECT MODE ON LOAD
+  const initialMode = document.querySelector('input[name="mode"]:checked').value;
+  updateUnitsForMode(initialMode);
 }
 
 // ===== START =====
