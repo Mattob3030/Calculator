@@ -37,6 +37,47 @@ function initCalculator() {
   const yardsSection = document.getElementById("hn-yards");
   const depthGroup = document.getElementById("hn-depth-group");
 
+  // ===== UNIT CONTROL FUNCTION =====
+  function updateUnitsForMode(mode) {
+    const rows = document.querySelectorAll(".hn-area-row");
+
+    rows.forEach(row => {
+      const select = row.querySelector(".hn-unit");
+      if (!select) return;
+
+      let acresOption = select.querySelector('option[value="acres"]');
+      let label = row.querySelector(".hn-unit-label");
+
+      if (mode === "multi") {
+        if (acresOption) acresOption.remove();
+        select.value = "sqft";
+        select.style.display = "none";
+
+        if (!label) {
+          const span = document.createElement("span");
+          span.className = "hn-unit-label";
+          span.textContent = "Sq Ft";
+          span.style.fontWeight = "600";
+          span.style.minWidth = "60px";
+          span.style.textAlign = "center";
+          select.parentNode.insertBefore(span, select.nextSibling);
+        }
+
+      } else {
+        select.style.display = "";
+
+        if (!acresOption) {
+          const option = document.createElement("option");
+          option.value = "acres";
+          option.textContent = "Acres";
+          select.appendChild(option);
+        }
+
+        if (label) label.remove();
+      }
+    });
+  }
+
   // ===== MODE SWITCHING =====
   modeRadios.forEach(radio => {
     radio.addEventListener("change", () => {
@@ -63,6 +104,8 @@ function initCalculator() {
         addBtn.style.display = "none";
         depthGroup.style.display = "none";
       }
+
+      updateUnitsForMode(selected);
     });
   });
 
@@ -111,6 +154,9 @@ function initCalculator() {
     widthInput.addEventListener("input", updateRowResult);
 
     areaList.appendChild(row);
+
+    const currentMode = document.querySelector('input[name="mode"]:checked').value;
+    updateUnitsForMode(currentMode);
   });
 
   // ===== CALCULATE =====
@@ -122,7 +168,6 @@ function initCalculator() {
     let cubicYards = 0;
     let cubicFeet = 0;
 
-    // ===== MODE LOGIC =====
     if (mode === "yards") {
       cubicYards = parseFloat(document.getElementById("hn-yards-input").value) || 0;
 
@@ -194,7 +239,7 @@ function initCalculator() {
       </div>
 
       <div><strong>Material:</strong> ${material.name}</div>
-      ${mode !== "yards" ? `<div><strong>Area:</strong> ${totalArea.toFixed(2)} sq ft</div>` : ""}
+      ${mode !== "yards" ? `<div><strong>Area:</strong> ${totalArea.toFixed(2)} sq ft</div>` : `<div><strong>Input Volume:</strong> ${cubicYards.toFixed(2)} cu yd</div>`}
       <div><strong>Cubic Feet:</strong> ${cubicFeet.toFixed(2)}</div>
       <div><strong>Cubic Yards:</strong> ${cubicYards.toFixed(2)}</div>
 
@@ -251,6 +296,9 @@ function initCalculator() {
 
   // ===== INIT =====
   addBtn.click();
+
+  const initialMode = document.querySelector('input[name="mode"]:checked').value;
+  updateUnitsForMode(initialMode);
 }
 
 // ===== START =====
