@@ -24,7 +24,7 @@ function sendOrderEmail() {
   const subject = encodeURIComponent("StoneMarket Order Request");
 
   const body = encodeURIComponent(
-`PLEASE COMPLETE CONTACT INFO:
+`*** PLEASE COMPLETE ALL CONTACT INFO BEFORE SENDING! ***
 
 NAME:
 PHONE NUMBER:
@@ -39,12 +39,13 @@ Material: ${materialText}
 
 ${result}
 
+*** Please allow 3 business days to process this order request***
 ----------------------------
 
 (Submitted via SquareSpace Material Calculator)`
   );
 
-  const mailtoLink = `mailto:romfordmassive@gmail.com?subject=${subject}&body=${body}`;
+  const mailtoLink = `mailto:pwiltz@hoerrnursery.com?subject=${subject}&body=${body}`;
 
   window.location.href = mailtoLink;
 }
