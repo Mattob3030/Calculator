@@ -39,7 +39,7 @@ Material: ${materialText}
 
 ${result}
 
-*** Please allow 3 business days to process this order request***
+*** Please allow 3 business days to process this order request ***
 ----------------------------
 
 (Submitted via SquareSpace Material Calculator)`
