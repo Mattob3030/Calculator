@@ -9,6 +9,46 @@ function waitForMaterials(callback) {
   }
 }
 
+// ===== EMAIL FUNCTION =====
+function sendOrderEmail() {
+  const materialDropdown = document.getElementById("hn-material");
+  const materialText = materialDropdown?.options[materialDropdown.selectedIndex]?.text || "";
+
+  const result = document.getElementById("hn-result")?.innerText || "";
+
+  if (!result) {
+    alert("Please calculate materials first.");
+    return;
+  }
+
+  const subject = encodeURIComponent("StoneMarket Order Request");
+
+  const body = encodeURIComponent(
+`PLEASE COMPLETE CONTACT INFO:
+
+NAME:
+PHONE NUMBER:
+ADDRESS:
+DELIVERY REQUESTED? (YES/NO):
+
+----------------------------
+
+ORDER DETAILS:
+
+Material: ${materialText}
+
+${result}
+
+----------------------------
+
+(Submitted via Material Calculator)`
+  );
+
+  const mailtoLink = `mailto:romfordmassive@gmail.com?subject=${subject}&body=${body}`;
+
+  window.location.href = mailtoLink;
+}
+
 // ===== MAIN INIT FUNCTION =====
 function initCalculator() {
 
@@ -213,7 +253,6 @@ function initCalculator() {
       cubicYards = cubicFeet / 27;
     }
 
-    // ===== MATERIAL =====
     const selectedMaterialId = document.getElementById("hn-material").value;
     const material = MATERIALS.find(m => m.id == selectedMaterialId);
 
@@ -228,7 +267,6 @@ function initCalculator() {
     const today = new Date();
     const formattedDate = today.toLocaleDateString("en-US");
 
-    // ===== OUTPUT =====
     document.getElementById("hn-result").innerHTML = `
       <div style="margin-bottom:10px;">
         <strong>Hoerr Nursery's StoneMarket Estimate ${formattedDate}</strong>
@@ -257,6 +295,12 @@ function initCalculator() {
         <strong>HoerrNursery.com</strong>
       </div>
     `;
+
+    // ✅ SHOW ORDER BUTTON AFTER CALC
+    const orderBtn = document.getElementById("hn-order-btn");
+    if (orderBtn) {
+      orderBtn.style.display = "inline-block";
+    }
   });
 
   // ===== PRINT BUTTON =====
