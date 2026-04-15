@@ -41,7 +41,7 @@ ${result}
 
 ----------------------------
 
-(Submitted via Material Calculator)`
+(Submitted via SquareSpace Material Calculator)`
   );
 
   const mailtoLink = `mailto:romfordmassive@gmail.com?subject=${subject}&body=${body}`;
