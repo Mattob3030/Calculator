@@ -52,10 +52,18 @@ function initCalculator() {
 
   const materialDropdown = document.getElementById("hn-material");
   const addBtn = document.getElementById("hn-add");
+  const printBtn = document.getElementById("hn-print");
 
   if (!materialDropdown || !addBtn) {
     console.error("Required elements not found");
     return;
+  }
+
+  // ===== PRINT FUNCTION (RESTORED) =====
+  if (printBtn) {
+    printBtn.addEventListener("click", () => {
+      window.print();
+    });
   }
 
   // ===== POPULATE MATERIALS =====
