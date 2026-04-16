@@ -40,5 +40,5 @@ window.MATERIALS = [
   { id: 38, name: "1.25” Black Cherry Gravel", price: 278, density: 100 },
   { id: 39, name: "1.5” American Heritage Rock", price: 195, density: 100 },
   { id: 40, name: "Kiddie Cushion Mulch", price: 255, density: 60 }, // 400 sqft
-
+  { id: "sod", name: "Sod (Per Roll)", price: 8.50, density: 0 },
 ];
