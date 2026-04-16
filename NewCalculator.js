@@ -299,7 +299,7 @@ function initCalculator() {
         </div>
 
         <div style="margin-top:15px;">
-          <strong>Call us today to order: 309-689-2513</strong><br>
+          <strong>309-689-2513</strong><br>
           <strong>Located 8020 N. Shade Tree Dr. Peoria, IL 61615</strong><br>
           <strong>HoerrNursery.com</strong>
         </div>
@@ -394,7 +394,7 @@ function initCalculator() {
             <div class="container">
               ${resultHTML}
               <div class="footer">
-                Hoerr Nursery • 309-689-2513
+                ***************
               </div>
             </div>
           </body>
