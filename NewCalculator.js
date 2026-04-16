@@ -264,7 +264,7 @@ function initCalculator() {
 
     // ===== SOD VALIDATION =====
     if (selectedMaterialId === "sod" && mode === "yards") {
-      document.getElementById("hn-result").innerHTML = "Please select square yards for sod.";
+      document.getElementById("hn-result").innerHTML = "Select Calculate Area(s) or Total Sqft/Acres for sod.";
       return;
     }
 
