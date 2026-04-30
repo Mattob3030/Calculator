@@ -195,18 +195,27 @@ function initCalculator() {
     w.print();
   };
 
-  // INIT
+  // INIT DEFAULT ROW
   addBtn.click();
 }
 
+// EMAIL FUNCTION (UPDATED)
 function sendOrderEmail() {
   const result = document.getElementById("hn-result").innerText;
 
-  const subject = encodeURIComponent("Sod Order Request");
-  const body = encodeURIComponent(result);
+  const intro = `***PLEASE FILL ALL INFORMATION OUT BEFORE SENDING***
 
-  window.location.href = `mailto:?subject=${subject}&body=${body}`;
+NAME:
+PHONE:
+ADDRESS:
+
+`;
+
+  const subject = encodeURIComponent("Sod Order Request");
+  const body = encodeURIComponent(intro + result);
+
+  window.location.href = `mailto:pwiltz@hoerrnursery.com?subject=${subject}&body=${body}`;
 }
 
-// ✅ FIXED INIT (only change made)
+// INIT FIX
 document.addEventListener("DOMContentLoaded", initCalculator);
