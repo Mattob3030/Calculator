@@ -208,4 +208,5 @@ function sendOrderEmail() {
   window.location.href = `mailto:?subject=${subject}&body=${body}`;
 }
 
-window.addEventListener("load", initCalculator);
+// ✅ FIXED INIT (only change made)
+document.addEventListener("DOMContentLoaded", initCalculator);
