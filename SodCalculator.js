@@ -101,12 +101,13 @@ function initCalculator() {
     const rolls = Math.ceil(adjustedArea / 10);
     const pallets = Math.ceil(adjustedArea / 500);
 
+    // ===== PRICING =====
+    const pricePerRoll = 8.50;
+    const materialCost = rolls * pricePerRoll;
+
     // DELIVERY
     const deliveryChecked = document.getElementById("hn-delivery").checked;
     const deliveryCost = deliveryChecked ? 140 : 0;
-
-    // FUTURE PRICING PLACEHOLDER
-    const materialCost = 0;
 
     const totalCost = materialCost + deliveryCost;
 
@@ -134,16 +135,16 @@ function initCalculator() {
         <strong>Delivery:</strong> ${deliveryChecked ? "Yes" : "No"}
       </div>
 
-      ${deliveryChecked ? `<div><strong>Delivery Charge:</strong> $140</div>` : ""}
+      ${deliveryChecked ? `<div><strong>Delivery Charge:</strong> $140.00</div>` : ""}
 
       <div style="margin-top:10px;">
-        <strong>Material Total:</strong> $${materialCost}
+        <strong>Material Total:</strong> $${materialCost.toFixed(2)}
       </div>
 
-      ${deliveryChecked ? `<div><strong>Delivery:</strong> $${deliveryCost}</div>` : ""}
+      ${deliveryChecked ? `<div><strong>Delivery:</strong> $${deliveryCost.toFixed(2)}</div>` : ""}
 
       <div>
-        <strong>Grand Total:</strong> $${totalCost}
+        <strong>Grand Total:</strong> $${totalCost.toFixed(2)}
       </div>
 
       <div style="margin-top:15px;">
@@ -183,4 +184,4 @@ function initCalculator() {
   addBtn.click();
 }
 
-document.addEventListener("DOMContentLoaded", initCalculator);
+window.addEventListener("load", initCalculator);
