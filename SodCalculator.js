@@ -98,12 +98,23 @@ function initCalculator() {
     const wastePercent = parseFloat(document.getElementById("hn-waste").value) || 0;
     const adjustedArea = totalArea * (1 + wastePercent / 100);
 
-    const rolls = Math.ceil(adjustedArea / 10);
-    const pallets = Math.ceil(adjustedArea / 500);
+    // ===== CALCULATIONS =====
+    const rollSize = 10;
+    const rollsPerPallet = 64;
+
+    const totalRollsNeeded = Math.ceil(adjustedArea / rollSize);
+    const pallets = Math.floor(totalRollsNeeded / rollsPerPallet);
+    const remainingRolls = totalRollsNeeded % rollsPerPallet;
 
     // ===== PRICING =====
     const pricePerRoll = 8.50;
-    const materialCost = rolls * pricePerRoll;
+    const pricePerPallet = rollsPerPallet * pricePerRoll;
+
+    const materialCost =
+      (pallets * pricePerPallet) +
+      (remainingRolls * pricePerRoll);
+
+    const rolls = totalRollsNeeded;
 
     // DELIVERY
     const deliveryChecked = document.getElementById("hn-delivery").checked;
@@ -124,11 +135,15 @@ function initCalculator() {
       <div><strong>Adjusted Area:</strong> ${adjustedArea.toFixed(2)} sq ft</div>
 
       <div style="margin-top:10px;">
-        <strong>Rolls Needed:</strong> ${rolls}
+        <strong>Total Rolls Needed:</strong> ${rolls}
       </div>
 
       <div>
-        <strong>Pallets Needed:</strong> ${pallets}
+        <strong>Pallets:</strong> ${pallets}
+      </div>
+
+      <div>
+        <strong>Remaining Rolls:</strong> ${remainingRolls}
       </div>
 
       <div style="margin-top:10px;">
@@ -182,6 +197,15 @@ function initCalculator() {
 
   // INIT
   addBtn.click();
+}
+
+function sendOrderEmail() {
+  const result = document.getElementById("hn-result").innerText;
+
+  const subject = encodeURIComponent("Sod Order Request");
+  const body = encodeURIComponent(result);
+
+  window.location.href = `mailto:?subject=${subject}&body=${body}`;
 }
 
 window.addEventListener("load", initCalculator);
