@@ -1,4 +1,3 @@
-<script>
 document.addEventListener("DOMContentLoaded", function () {
 
   const input = document.getElementById("hn-search-input");
@@ -21,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { url: "/wedesign", keywords: ["we design you install", "diy landscape", "design only"] },
     { url: "/hoerr-commercial-services", keywords: ["commercial landscaping", "commercial services"] },
 
-    { url: "/calculatorcontractor", keywords: ["calculator", "estimate", "materials calculator"] },
+    { url: "/stone-market-1", keywords: ["calculator", "estimate", "materials calculator"] },
 
     { url: "/events", keywords: ["events"] },
     { url: "/workshops", keywords: ["workshops", "classes"] },
@@ -71,4 +70,3 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
-</script>
