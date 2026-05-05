@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { url: "/sod", keywords: ["sod", "grass", "turf"] },
     { url: "/garden-center", keywords: ["garden center", "plants", "nursery"] },
     { url: "/garden-shop", keywords: ["shop", "store", "garden shop"] },
-    { url: "/stone-market-1", keywords: ["stone", "rock", "gravel"] },
+    { url: "/stone-market-1", keywords: ["stone", "rock", "gravel", "sand", "delivery", "mulch", "better earth", "compost"] },
     { url: "/trees", keywords: ["trees"] },
     { url: "/perennials", keywords: ["perennials"] },
     { url: "/annuals", keywords: ["annuals"] },
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { url: "/resources", keywords: ["resources", "guides"] },
     { url: "/garden-blog", keywords: ["blog", "articles", "tips"] },
 
-    { url: "/about", keywords: ["about", "company"] },
+    { url: "/about", keywords: ["about", "company", "history"] },
     { url: "/contact", keywords: ["contact", "phone", "location"] },
     { url: "/careers", keywords: ["careers", "jobs", "employment"] },
     { url: "/gift-cards", keywords: ["gift card", "gift cards"] },
