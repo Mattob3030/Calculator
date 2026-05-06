@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const input = document.getElementById("hn-search-input");
   const button = document.getElementById("hn-search-btn");
+  const message = document.getElementById("hn-search-message"); // 👈 MISSING LINE FIXED
 
   const searchData = [
     { url: "/sod", keywords: ["sod", "grass", "turf"] },
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { url: "/wedesign", keywords: ["we design you install", "diy landscape", "design only"] },
     { url: "/hoerr-commercial-services", keywords: ["commercial landscaping", "commercial services"] },
 
-    { url: "/stone-market-1", keywords: ["calculator", "estimate", "materials calculator"] },
+    { url: "/calculatorcontractor", keywords: ["calculator", "estimate", "materials calculator"] }, // 👈 fixed URL
 
     { url: "/events", keywords: ["events"] },
     { url: "/workshops", keywords: ["workshops", "classes"] },
