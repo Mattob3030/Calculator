@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { url: "/garden-blog", keywords: ["blog", "articles", "tips"] },
 
     { url: "/about", keywords: ["about", "company", "history"] },
-    { url: "/contact", keywords: ["contact", "phone", "location", "hours", "open"] },
+    { url: "/home#hours", keywords: ["contact", "phone", "location", "hours", "open"] },
     { url: "/careers", keywords: ["careers", "jobs", "employment"] },
     { url: "/gift-cards", keywords: ["gift card", "gift cards"] },
     { url: "/warranty", keywords: ["warranty", "guarantee"] }
