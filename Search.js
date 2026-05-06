@@ -39,6 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const query = input.value.trim().toLowerCase();
     if (!query) return;
 
+    // Clear previous message
+    if (message) message.textContent = "";
+
     // 1. Exact match
     for (let page of searchData) {
       if (page.keywords.includes(query)) {
@@ -57,16 +60,23 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // 3. Fallback to Squarespace search
-    window.location.href = "/search?q=" + encodeURIComponent(query);
+    // 3. No match found
+    if (message) {
+      message.textContent = "No results found. Try a different keyword.";
+    }
   }
 
   button.addEventListener("click", handleSearch);
 
-  input.addEventListener("keypress", function (e) {
+  input.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
       handleSearch();
     }
+  });
+
+  // Clear message when typing again
+  input.addEventListener("input", function () {
+    if (message) message.textContent = "";
   });
 
 });
