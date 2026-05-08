@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const input = document.getElementById("hn-search-input");
   const button = document.getElementById("hn-search-btn");
-  const message = document.getElementById("hn-search-message"); // 👈 MISSING LINE FIXED
+  const message = document.getElementById("hn-search-message");
 
   const searchData = [
     { url: "/sod", keywords: ["sod", "grass", "turf"] },
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { url: "/wedesign", keywords: ["we design you install", "diy landscape", "design only"] },
     { url: "/hoerr-commercial-services", keywords: ["commercial landscaping", "commercial services"] },
 
-    { url: "/calculatorcontractor", keywords: ["calculator", "estimate", "materials calculator"] }, // 👈 fixed URL
+    { url: "/calculatorcontractor", keywords: ["calculator", "estimate", "materials calculator"] },
 
     { url: "/events", keywords: ["events"] },
     { url: "/workshops", keywords: ["workshops", "classes"] },
@@ -36,6 +36,22 @@ document.addEventListener("DOMContentLoaded", function () {
     { url: "/warranty", keywords: ["warranty", "guarantee"] }
   ];
 
+  // ===== SEARCH LOGGING FUNCTION =====
+  function logSearch(term, matched) {
+    fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        query: term,
+        matched: matched,
+        timestamp: new Date().toISOString()
+      })
+    });
+  }
+
   function handleSearch() {
     const query = input.value.trim().toLowerCase();
     if (!query) return;
@@ -46,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 1. Exact match
     for (let page of searchData) {
       if (page.keywords.includes(query)) {
+        logSearch(query, true);
         window.location.href = page.url;
         return;
       }
@@ -55,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let page of searchData) {
       for (let keyword of page.keywords) {
         if (query.includes(keyword)) {
+          logSearch(query, true);
           window.location.href = page.url;
           return;
         }
@@ -65,6 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (message) {
       message.textContent = "No results found. Try a different keyword.";
     }
+
+    logSearch(query, false);
   }
 
   button.addEventListener("click", handleSearch);
