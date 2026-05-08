@@ -36,27 +36,24 @@ document.addEventListener("DOMContentLoaded", function () {
     { url: "/warranty", keywords: ["warranty", "guarantee"] }
   ];
 
-  // ===== SEARCH LOGGING FUNCTION =====
+  // ===== SEARCH LOGGING FUNCTION (FIXED) =====
   function logSearch(term, matched) {
-    fetch("https://script.google.com/macros/s/AKfycbycJWVxXGno4Kj7RsJgJhgAlaoVp6e6tGGatD7DtfUwKMO4om611OuObr_jabarYAvJ4g/exec", {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        query: term,
-        matched: matched,
-        timestamp: new Date().toISOString()
-      })
+    const data = JSON.stringify({
+      query: term,
+      matched: matched,
+      timestamp: new Date().toISOString()
     });
+
+    navigator.sendBeacon(
+      "https://script.google.com/macros/s/AKfycbycJWVxXGno4Kj7RsJgJhgAlaoVp6e6tGGatD7DtfUwKMO4om611OuObr_jabarYAvJ4g/exec",
+      data
+    );
   }
 
   function handleSearch() {
     const query = input.value.trim().toLowerCase();
     if (!query) return;
 
-    // Clear previous message
     if (message) message.textContent = "";
 
     // 1. Exact match
@@ -95,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Clear message when typing again
   input.addEventListener("input", function () {
     if (message) message.textContent = "";
   });
