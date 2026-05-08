@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ===== SEARCH LOGGING FUNCTION =====
   function logSearch(term, matched) {
-    fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+    fetch("https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbycJWVxXGno4Kj7RsJgJhgAlaoVp6e6tGGatD7DtfUwKMO4om611OuObr_jabarYAvJ4g/exec/exec", {
       method: "POST",
       mode: "no-cors",
       headers: {
