@@ -1,28 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  // EXCLUDED PAGES
-  const excludedPages = [
-    "/netpsagreement", "/12120040"
-  ];
-
-  const excludedDomains = [
-    "plants.hoerrnursery.com"
-  ];
-
-  if (
-    excludedPages.includes(window.location.pathname) ||
-    excludedDomains.includes(window.location.hostname)
-  ) {
-
-    const searchContainer = document.querySelector(".hn-search");
-
-    if (searchContainer) {
-      searchContainer.style.display = "none";
-    }
-
-    return;
-  }
-
   const input = document.getElementById("hn-search-input");
   const button = document.getElementById("hn-search-btn");
   const message = document.getElementById("hn-search-message");
