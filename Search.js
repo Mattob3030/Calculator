@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 "anemones","black-eyed susans","daylilies","dianthus","forget me nots",
 "heuchera","hyssop","iris","lavender","mukdenia","mullein",
 "peonies","painted fern","stiff tickseed","verbascum",
-"raspberry echinacea","orange daylilies",
+"raspberry echinacea","orange daylilies", "hosta", "hostas",
 
 // ANNUALS
 "nemesia","pentas","supertunia","supertunia bubblegum",
