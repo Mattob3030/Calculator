@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // EXCLUDED PAGES
   const excludedPages = [
-    "/netpsagreement"
+    "/netpsagreement", "/12120040"
   ];
 
   const excludedDomains = [
