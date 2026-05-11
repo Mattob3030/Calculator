@@ -8,52 +8,58 @@ document.addEventListener("DOMContentLoaded", function () {
     { url: "/sod", keywords: ["sod", "grass", "turf"] },
     { url: "/garden-center", keywords: ["garden center", "plants", "nursery"] },
     { url: "/garden-shop", keywords: ["shop", "store", "garden shop"] },
-    { url: "/stone-market-1", keywords: ["stone", "rock", "gravel", "sand", "delivery", "mulch", "better earth", "compost"] },
+    { url: "/stone-market-1", keywords: ["stone", "rock", "gravel", "sand", "delivery", "mulch", "better earth", "compost", "topsoil", "top soil", "dirt", "fill dirt",] },
     { url: "/trees", keywords: ["trees"] },
     { url: "/netpsagreement", keywords: [
-    // GENERAL TERMS
-    "plants","plant","flowers","flower","shrubs","bushes","trees","evergreens","annuals","perennials",
-    "houseplants","indoor plants","outdoor plants","landscape plants","garden plants",
+   // TREES
+"american beech","american beech tree","bald cypress","banana tree",
+"chestnut","horseshoe chestnut","crape myrtle","fruit cocktail tree",
+"multi fruit tree","red buckeye tree","shade tree",
+"sycamore","thuja","thuja green giant","weeping cherry",
+"ever red japanese maple","crimson queen","green giant",
 
-    // TREES
-    "maple","oak","birch","spruce","pine","arborvitae","cedar","dogwood","redbud","crabapple",
-    "magnolia","willow","elm","hackberry","honeylocust","serviceberry","aspen","fir","juniper tree",
+// SHRUBS
+"aronia","low scape mound aronia","butterfly bush","dwarf butterfly bush",
+"dwarf buddleia","button bush","elderberry","black tower elderberry",
+"mock orange","smokebush","winecraft black smokebush","snowball",
+"rose","roses","david austin","carolina allspice",
+"calycanthus floridus","jostaberry",
 
-    // EVERGREEN / PRIVACY
-    "privacy trees","evergreen trees","fast growing trees","screening trees","windbreak trees",
+// PERENNIALS
+"anemones","black-eyed susans","daylilies","dianthus","forget me nots",
+"heuchera","hyssop","iris","lavender","mukdenia","mullein",
+"peonies","painted fern","stiff tickseed","verbascum",
+"raspberry echinacea","orange daylilies",
 
-    // SHRUBS
-    "hydrangea","boxwood","burning bush","lilac","spirea","barberry","weigela","ninebark",
-    "viburnum","rose bush","azalea","rhododendron","holly","juniper shrub","potentilla",
+// ANNUALS
+"nemesia","pentas","supertunia","supertunia bubblegum",
+"supertunia picasso","angelface perfectly pink",
 
-    // PERENNIALS
-    "hosta","daylily","coneflower","black eyed susan","sedum","peony","salvia","phlox",
-    "coreopsis","yarrow","delphinium","bleeding heart","astilbe","columbine","shasta daisy",
+// GRASSES
+"big blue stem","karl forester",
 
-    // ANNUALS
-    "petunia","impatiens","begonia","marigold","zinnia","geranium","calibrachoa",
-    "alyssum","coleus","snapdragon","pansy","verbena","lantana","dusty miller",
+// VINES / CLIMBERS
+"amethyst falls wisteria vine","climbing black eye susan vine",
+"vine black eye susan","part shade vines","vines for part shade",
+"honey suckle",
 
-    // GRASSES
-    "ornamental grass","fountain grass","switchgrass","maiden grass","blue fescue","feather reed grass",
+// TROPICALS / HOUSEPLANTS
+"asparagus fern","black magic colocasia","gardenia","orchid",
+"pony tail palm","venus fly trap","fiscus","foscus",
 
-    // GROUNDCOVER / VINES
-    "ground cover","creeping phlox","vinca","ivy","pachysandra","sedum groundcover",
-    "climbing vines","clematis","honeysuckle","morning glory",
+// EDIBLES
+"aji rico","blueberry","borage","carolina reaper","chives",
+"cucumber","dill","grapes","jalapeno","jalapeño","onion",
+"pepper","rhubarb","spinach","strawberry","sweet potato",
+"tomato","vegetables",
 
-    // HOUSEPLANTS
-    "snake plant","pothos","philodendron","peace lily","rubber plant","fiddle leaf fig",
-    "spider plant","monstera","zz plant","aloe","succulents","cactus",
+// GENERAL / COMMON SEARCHES
+"juniper","juniper bush","ornamental","perennial",
+"banana tree","topiary","topiaries", "roses", "rose",
 
-    // TROPICALS
-    "tropical plants","banana plant","hibiscus","elephant ear","palm tree","bird of paradise",
-
-    // WATER / POND
-    "water plants","pond plants","water lily","lotus","cattails","aquatic plants",
-
-    // EDIBLES
-    "fruit trees","apple tree","peach tree","cherry tree","pear tree",
-    "vegetable plants","tomato plant","pepper plant","herbs","basil","mint","rosemary"
+// COMMON MISSPELLINGS
+"creeping pholx","gerranium","gerraniums","lillac",
+"lillies","perinal","sefum","drawf tree"
   ] },
     { url: "/bulbsseeds", keywords: ["bulbs", "seeds"] },
     { url: "/plant-pharmacy", keywords: ["plant care", "fertilizer", "disease", "insect control"] },
@@ -121,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 3. No match found
     if (message) {
-      message.textContent = "No results found. Try a different keyword.";
+      message.textContent = "No results found. Please use PLANT FINDER to search for plants!";
     }
 
     logSearch(query, false);
