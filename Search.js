@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 "chestnut","horseshoe chestnut","crape myrtle","fruit cocktail tree",
 "multi fruit tree","red buckeye tree","shade tree",
 "sycamore","thuja","thuja green giant","weeping cherry",
-"ever red japanese maple","crimson queen","green giant",
+"ever red japanese maple","crimson queen","green giant", "maple", "maples", "oak", "oaks",
 
 // SHRUBS
 "aronia","low scape mound aronia","butterfly bush","dwarf butterfly bush",
