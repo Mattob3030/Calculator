@@ -2,11 +2,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // EXCLUDED PAGES
   const excludedPages = [
-    "/netpsagreement",
-    "/netps"
+    "/netpsagreement"
   ];
 
-  if (excludedPages.includes(window.location.pathname)) {
+  const excludedDomains = [
+    "plants.hoerrnursery.com"
+  ];
+
+  if (
+    excludedPages.includes(window.location.pathname) ||
+    excludedDomains.includes(window.location.hostname)
+  ) {
 
     const searchContainer = document.querySelector(".hn-search");
 
