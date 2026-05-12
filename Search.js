@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const searchData = [
     { url: "/sod", keywords: ["sod", "grass", "turf"] },
-    { url: "/garden-center", keywords: ["garden center", "nursery", "bird baths", "statues", "pots", "hose", "watering can",] },
+    { url: "/garden-center", keywords: ["garden center", "nursery", "bird baths", "statues", "pots", "hose", "watering can", "garden statues"] },
     { url: "/garden-shop", keywords: ["shop", "store", "garden shop"] },
     { url: "/stone-market-1", keywords: ["stone", "rock", "gravel", "sand", "delivery", "mulch", "better earth", "compost", "topsoil", "top soil", "dirt", "fill dirt",] },
     { url: "/trees", keywords: ["trees"] },
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
 "weeping willow","white oak","willow","arborvitae",
 
 // SHRUBS
-"abelia","aronia","azalea","baby kim lilac bush",
+"abelia","aronia","azalea","baby kim lilac bush", "bush",
 "barberry","black tower elderberry","boxwood",
 "burning bush","butterfly bush","button bush",
 "calycanthus floridus","carolina allspice",
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
 "nanho blue butterfly bush","ninebark",
 "oak leaf hydrangea","perennial bushes",
 "potentilla","rhododendron","rose","rose of sharon",
-"rose plant hybrid tea","rose tree","roses",
+"rose plant hybrid tea","rose tree","roses", "rose",
 "shrubs","smokebush","snowball","spirea",
 "viburnum","weigela","winecraft black smokebush",
 
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { url: "/landscapedesign", keywords: ["landscape design", "design service"] },
     { url: "/landscape-maintenance", keywords: ["maintenance", "lawn care", "yard maintenance"] },
     { url: "/wedesign", keywords: ["we design you install", "diy landscape", "design only"] },
-    { url: "/hoerr-commercial-services", keywords: ["commercial landscaping", "commercial services"] },
+    { url: "/hoerr-commercial-services", keywords: ["commercial landscaping", "commercial services", "contractor"] },
 
     { url: "/calculatorcontractor", keywords: ["calculator", "estimate", "materials calculator"] },
 
