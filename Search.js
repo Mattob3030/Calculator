@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
 "pond lants","pond plant",
 "aquadic plants","aquatic pant",
 "water hyacynth","water hyacinths",
-"papryus","elephant ear pondplant"
+"papryus","elephant ear pondplant",
 
 // GENERAL / COMMON SEARCHES
 "bag seed","banana tree","flowering trees",
