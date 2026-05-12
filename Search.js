@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const searchData = [
     { url: "/sod", keywords: ["sod", "grass", "turf"] },
-    { url: "/garden-center", keywords: ["garden center", "plants", "nursery"] },
+    { url: "/garden-center", keywords: ["garden center", "nursery", "bird baths", "statues", "pots", "hose", "watering can",] },
     { url: "/garden-shop", keywords: ["shop", "store", "garden shop"] },
     { url: "/stone-market-1", keywords: ["stone", "rock", "gravel", "sand", "delivery", "mulch", "better earth", "compost", "topsoil", "top soil", "dirt", "fill dirt",] },
     { url: "/trees", keywords: ["trees"] },
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
 "hanging basket","juniper","juniper bush",
 "ornamental","perennial","pink flowers",
 "pond","rose","roses","seed",
-"topiaries","topiary",
+"topiaries","topiary", "perennials", "perennial", "annuals", "annual", "tropicals", "house plant", "house plants", "houseplant", "houseplants",
 
 // COMMON MISSPELLINGS
 "black magic colorado’s","climbing fower",
