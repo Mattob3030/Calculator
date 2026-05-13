@@ -12,18 +12,49 @@ document.addEventListener("DOMContentLoaded", function () {
       keywords: [
         "garden center", "nursery", "bird baths", "statues",
         "pots", "hose", "watering can", "garden statues",
-        "garden center near me", "plant nursery"
+        "garden center near me", "plant nursery", "statuary", "water features"
       ] 
     },
 
-    { url: "/garden-shop", keywords: ["shop", "store", "garden shop"] },
+    { url: "/garden-shop", keywords: ["shop", "store", "garden shop" "windchimes", "wind chimes" "Specialty foods",
+"Indoor pottery",
+"Outdoor pottery",
+"Garden gazing balls",
+"Bird Baths",
+"Garden art",
+"Wind spinners",
+"Fountains",
+"Bird feeders",
+"Bird houses",
+"Bee houses",
+"Suet feeders",
+"Hummingbird feeders",
+"Garden-themed gifts",
+"Statues",
+"Silk flowers",
+"Seasonal bulbs and seeds",
+"Benches",
+"Garden tools",
+"Garden gloves",
+"Garden sleeves",
+"Watering cans",
+"Soil thermometers",
+"Soil pH kits",
+"Soil testers",
+"Windchimes",
+"Children's gardening tools",
+"Watering globes",
+"Rain gauges",
+"Grow lights",
+"Outdoor thermometers",
+"Memorial"] },
 
     { 
       url: "/stone-market-1", 
       keywords: [
         "stone", "rock", "gravel", "sand", "delivery",
         "mulch", "better earth", "compost", "topsoil",
-        "top soil", "dirt", "fill dirt"
+        "top soil", "dirt", "fill dirt", "red mulch", "black mulch", "brown mulch", "clay"
       ] 
     },
 
