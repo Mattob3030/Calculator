@@ -16,7 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
       ] 
     },
 
-    { url: "/garden-shop", keywords: ["shop", "store", "garden shop" "windchimes", "wind chimes" "Specialty foods",
+    { url: "/garden-shop", keywords: [
+      "shop", 
+      "store", 
+      "garden shop", 
+      "windchimes", 
+      "wind chimes", 
+      "Specialty foods",
 "Indoor pottery",
 "Outdoor pottery",
 "Garden gazing balls",
@@ -47,7 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
 "Rain gauges",
 "Grow lights",
 "Outdoor thermometers",
-"Memorial"] },
+"Memorial"
+      ] 
+    },
 
     { 
       url: "/stone-market-1", 
