@@ -44,13 +44,14 @@ document.addEventListener("DOMContentLoaded", function () {
 "garden gloves",
 "garden sleeves",
 "watering cans",
-"soil thermometers",
-"soil pH kits",
-"soil testers",
+"thermometers",
+"ph kits",
+"testers",
 "windchimes",
 "children's gardening tools",
 "watering globes",
 "rain gauges",
+"rain gauge",
 "grow lights",
 "outdoor thermometers",
 "memorial"
@@ -62,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
       keywords: [
         "stone", "rock", "gravel", "sand", "delivery",
         "mulch", "better earth", "compost", "topsoil",
-        "top soil", "dirt", "fill dirt", "red mulch", "black mulch", "brown mulch", "clay", "pavers", "stones", "boulders", "boulder", "rocks"
+        "top soil", "dirt", "fill dirt", "red mulch", "black mulch", "brown mulch", "clay", "pavers", "stones", "boulders", "boulder", "rocks", "soil"
       ] 
     },
 
