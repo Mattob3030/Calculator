@@ -62,11 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
       keywords: [
         "stone", "rock", "gravel", "sand", "delivery",
         "mulch", "better earth", "compost", "topsoil",
-        "top soil", "dirt", "fill dirt", "red mulch", "black mulch", "brown mulch", "clay"
+        "top soil", "dirt", "fill dirt", "red mulch", "black mulch", "brown mulch", "clay", "pavers", "stones", "boulders", "boulder", "rocks"
       ] 
     },
 
-    { url: "/trees", keywords: ["trees"] },
+    { url: "/trees", keywords: ["trees", "trees"] },
 
     {
       url: "/netpsagreement",
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // PERENNIALS
         "anemones","astilbe","black eyed susan",
-        "black-eyed susans","bleeding heart",
+        "black-eyed susans", "bee balm", "bleeding heart",
         "catmint","colored hosta","columbine",
         "coneflower","coreopsis","creeping phlox",
         "daylilies","daylily","delphinium",
