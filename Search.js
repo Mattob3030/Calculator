@@ -10,9 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     { 
       url: "/garden-center", 
       keywords: [
-        "garden center", "nursery", "bird baths", "statues",
-        "pots", "hose", "watering can", "garden statues",
-        "garden center near me", "plant nursery", "statuary", "water features"
+        "garden center", "nursery", 
+        "garden center near me", "plant nursery"
       ] 
     },
 
@@ -22,14 +21,19 @@ document.addEventListener("DOMContentLoaded", function () {
       "garden shop", 
       "windchimes", 
       "wind chimes", 
-      "Specialty foods",
+      "Specialty foods", "bird baths", "statues",
+        "pots", "hose", "watering can", "garden statues", "statuary", "water features", "lawn
 "indoor pottery",
 "outdoor pottery",
 "garden gazing balls",
 "bird baths",
+"bird bath",
+"birdbath",
+"birdbaths",
 "garden art",
 "wind spinners",
 "fountains",
+"fountain",
 "bird feeders",
 "bird houses",
 "bee houses",
@@ -54,7 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
 "rain gauge",
 "grow lights",
 "outdoor thermometers",
-"memorial"
+"memorial",
+"ornament",
+"ornaments"
       ] 
     },
 
@@ -67,13 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ] 
     },
 
-    { url: "/trees", keywords: ["trees", "trees"] },
-
-    {
-      url: "/netpsagreement",
-      keywords: [
-
-        // TREES
+    { url: "/trees", keywords: ["trees", "trees",
         "american beech","american beech tree","autumn blaze maple",
         "bald cypress","banana tree","blue spruce","bur oak",
         "catalpa tree","cherry tree","chestnut","coniferous trees",
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "ornamental trees","paper birch",
         "pecan trees","pine tree","pine trees",
         "red buckeye tree","red maple",
-        "rising sun redbud","sassafras trees",
+        "rising sun redbud","red bud", "sassafras trees",
         "serviceberry","serviceberry tree",
         "shade tree","shade trees","small trees",
         "spruce","spruce tree","spruce trees",
@@ -104,7 +104,11 @@ document.addEventListener("DOMContentLoaded", function () {
         "weeping cherry","weeping willow",
         "white oak","willow","arborvitae",
         "arbor vitae","evergreen trees",
-        "evergreen tree",
+        "evergreen tree",] },
+
+    {
+      url: "/netpsagreement",
+      keywords: [
 
         // SHRUBS
         "abelia","aronia","azalea","baby kim lilac bush","bush",
