@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "windchimes", 
       "wind chimes", 
       "Specialty foods", "bird baths", "statues",
-        "pots", "hose", "watering can", "garden statues", "statuary", "water features", "lawn
+        "pots", "hose", "watering can", "garden statues", "statuary", "water features", "lawn ornament", "lawn ornaments",
 "indoor pottery",
 "outdoor pottery",
 "garden gazing balls",
