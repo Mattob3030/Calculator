@@ -539,7 +539,9 @@ document.addEventListener("DOMContentLoaded", function () {
       url: "/warranty", 
       keywords: [
         "warranty",
-        "guarantee"
+        "guarantee",
+        "return",
+        "returns"
       ] 
     }
   ];
